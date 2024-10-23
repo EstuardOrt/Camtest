@@ -16,6 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CamTest"
         tools:targetApi="31">
+        
+        <provider
+            android:authorities="com.example.camtest.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/providerfile"/>
+
+
+            </provider>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
