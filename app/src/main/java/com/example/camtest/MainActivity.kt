@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        val button: Button = findViewById(R.id.btnCam)
+        val buttonCam: Button = findViewById(R.id.btnCam)
 
-        button.setOnClickListener {
+        buttonCam.setOnClickListener {
             val intentPhoto = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             fotoFile = getFile(FILE_NAME)
 
@@ -44,6 +44,13 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        val buttonGal: Button = findViewById(R.id.btnGaleria)
+
+        buttonGal.setOnClickListener {
+            val intentGaleria = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(intentGaleria, REQUEST_IMAGE_GALLERY)
+        }
+
     }
 
     private fun getFile(fileName: String): File {
@@ -56,13 +63,21 @@ class MainActivity : AppCompatActivity() {
             val foto = BitmapFactory.decodeFile(fotoFile.absolutePath)
             val image: ImageView = findViewById(R.id.imgView)
             image.setImageBitmap(foto)
+        }else if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
+
+            val selectedImageUri = data.data
+            val image: ImageView = findViewById(R.id.imgView)
+            image.setImageURI(selectedImageUri)
         }else{
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
+
+
 }
 
+private val REQUEST_IMAGE_GALLERY = 14
 private val REQUEST_IMAGE_CAPTURE = 13
 private const val FILE_NAME = "photo.jpg"
 private lateinit var fotoFile: File
