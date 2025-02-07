@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getFile(fileName: String): File {
+    fun getFile(fileName: String): File {
         val directory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(fileName, ".jpg", directory)
     }
