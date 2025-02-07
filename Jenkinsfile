@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clonar Código') {
             steps {
-                git branch: 'main', git 'https://github.com/EstuardOrt/Camtest'
+                git branch: 'main', url: 'https://github.com/EstuardOrt/Camtest.git'
             }
         }
 
