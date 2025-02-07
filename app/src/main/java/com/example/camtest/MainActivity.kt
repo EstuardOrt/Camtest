@@ -24,8 +24,6 @@ import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
-
-
     @SuppressLint("QueryPermissionsNeeded")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
